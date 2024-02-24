@@ -1,40 +1,10 @@
-package com.AlertSystem.backendSiteDiplom.models;
+package com.AlertSystem.backendSiteDiplom.dto;
 
-import com.AlertSystem.backendSiteDiplom.dto.TaskDTO;
-import jakarta.persistence.*;
-
-@Entity
-@Table(name = "Task")
-public class Task {
-    @Id
-    @Column(name = "id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @Column(name = "idCourse")
+public class TaskDTO {
     private int idCourse;
-    @Column(name = "label")
     private String label;
-    @Column(name = "description")
     private String description;
-    @Column(name = "infoToRep")
     private String infoToRep;
-
-    public Task(){}
-
-    public Task(int idCourse, String label, String description) {
-        this.idCourse = idCourse;
-        this.label = label;
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public int getIdCourse() {
         return idCourse;

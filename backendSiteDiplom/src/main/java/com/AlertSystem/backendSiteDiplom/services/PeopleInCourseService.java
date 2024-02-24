@@ -22,10 +22,6 @@ public class PeopleInCourseService {
     public void savePeopleInCourse(PeopleInCourse peopleInCourse){
         this.peopleInPCourseRepository.save(peopleInCourse);
     }
-    @Transactional
-    public void savePeopleInCourse(PeopleInCourseId peopleInCourseId){
-        this.peopleInPCourseRepository.save(peopleInCourseId);
-    }
 
     public List<PeopleInCourse> findCoursesByPeopleId(int idPeople){
         return this.peopleInPCourseRepository.findByPeopleInCourseIdIdPeople(idPeople);
