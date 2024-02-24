@@ -3,23 +3,47 @@ import requests
 from src.gitservice.app.api.const import GITHUB_USERNAME, GITHUB_TOKEN, HEADERS
 
 
-def create_repository(local_repo_path, repository_name, description):
+def create_repository(username, course_id, course_name, description):
     create_repository_url = 'https://api.github.com/user/repos'
 
-    repo = Repo.init(local_repo_path)
+    repository_name = f"course-{course_id}-{username}"
+    repo = Repo.init(repository_name)
 
+    headers = {
+        'Authorization': f'token {GITHUB_TOKEN}',
+        'Content-Type': 'application/json'
+    }
     data = {
         'name': repository_name,
-        'description': description,
-        'private': False,
+        'description': f"{course_name}:\n{description}",
+        'private': True,
         'auto_init': True
     }
 
-    response = requests.post(create_repository_url, headers=HEADERS, json=data)
+    response = requests.post(create_repository_url, headers=headers, json=data)
 
     if response.status_code == 201:
-        return f"Удаленный репозиторий успешно создан: {response.json()['clone_url']}"
+        add_collaborator(repository_name, username)
+
+        return response.json()['html_url']
     elif response.status_code == 422:
-        return "Репозиторий уже существует."
+        raise Exception("Репозиторий уже существует.")
     else:
-        return f"Ошибка при создании удаленного репозитория: {response.text}"
+        raise Exception(f"Ошибка при создании удаленного репозитория: {response.text}")
+
+
+def add_collaborator(repository_name, username, permission="push"):
+    add_collaborator_url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{repository_name}/collaborators/{username}"
+    headers = {
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github.v3+json"
+    }
+    data = {
+        "permission": permission
+    }
+    response = requests.put(add_collaborator_url, headers=headers, json=data)
+
+    if response.status_code == 201:
+        print(f"Запрос на коллаборацию успешно отправлен пользователю {username}.")
+    else:
+        raise Exception(f"Ошибка при добавлении пользователя {username} в качестве коллаборатора: {response.text}")
