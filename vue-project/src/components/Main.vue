@@ -2,30 +2,26 @@
 import { ref } from 'vue'
 import CourseList from './CourseList.vue'
 import AddCourse from './AddCourse.vue'
+import Header from './Header.vue'
 
 var showAddCourse = ref(false)
 
-const toggleAddCourse = () => {
-  showAddCourse.value = true
+function toggleAddCourse() {
+  showAddCourse.value = !showAddCourse.value
 }
 </script>
 
 <template>
   <div class="">
-    <header
-      class="flex items-center gap-4 ml-8 mr-8 mt-2 justify-between border-b-2 border-black h-12"
-    >
-      <h2 class="text-xl font-bold">GitCourse</h2>
-      <p>Username</p>
-    </header>
+    <Header />
 
-    <body>
+    <body class="border-b-2 border-black">
       <div class="p-10">
         <div class="flex justify-between">
           <h2 class="text-3xl font-bold mb-8">Все курсы</h2>
           <button
             @click="toggleAddCourse"
-            class="pb-1 px-4 items-center transition bg-lime-500 w-32 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-lime-600 active:bg-lime-700 cursor-pointer"
+            class="pb-1 px-4 items-center transition bg-teal-700 w-32 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-teal-600 active:bg-teal-500 cursor-pointer"
           >
             Создать курс
           </button>
@@ -35,6 +31,8 @@ const toggleAddCourse = () => {
     </body>
 
     <AddCourse v-if="showAddCourse" />
+
+    <footer class="mt-20"></footer>
   </div>
 </template>
 

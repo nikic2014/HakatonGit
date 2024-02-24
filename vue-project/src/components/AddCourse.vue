@@ -34,7 +34,7 @@
 
       <div>
         <button
-          class="pb-1 px-4 items-center transition bg-lime-500 w-32 h-8 rounded-lg text-white disabled:bg-slate-300 hover:bg-lime-600 active:bg-lime-700 cursor-pointer ml-16 mt-16"
+          class="pb-1 px-4 items-center transition bg-teal-700 w-32 h-8 rounded-lg text-white disabled:bg-slate-300 hover:bg-teal-600 active:bg-teal-500 cursor-pointer ml-16 mt-16"
         >
           Создать
         </button>

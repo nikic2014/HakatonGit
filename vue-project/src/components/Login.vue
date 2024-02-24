@@ -113,7 +113,7 @@ export default {
 }
 
 body {
-  background-color: rgb(19 78 74);
+  background-color: #134e4a;
   display: flex;
   justify-content: center;
   align-items: center;

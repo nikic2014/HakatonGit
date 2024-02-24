@@ -3,9 +3,7 @@ import Course from './Course.vue'
 </script>
 
 <template>
-  <div class="grid grid-cols-4 gap-5">
-    <Course />
-    <Course />
+  <div class="grid grid-cols-3 gap-10">
     <Course />
     <Course />
     <Course />
