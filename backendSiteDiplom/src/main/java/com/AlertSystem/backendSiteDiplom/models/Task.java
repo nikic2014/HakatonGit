@@ -17,8 +17,6 @@ public class Task {
     private String label;
     @Column(name = "description")
     private String description;
-    @Column(name = "infoToRep")
-    private String infoToRep;
 
     public Task(){}
 
@@ -58,13 +56,5 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getInfoToRep() {
-        return infoToRep;
-    }
-
-    public void setInfoToRep(String infoToRep) {
-        this.infoToRep = infoToRep;
     }
 }

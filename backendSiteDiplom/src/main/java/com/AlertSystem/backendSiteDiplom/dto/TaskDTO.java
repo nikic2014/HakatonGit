@@ -4,7 +4,6 @@ public class TaskDTO {
     private int idCourse;
     private String label;
     private String description;
-    private String infoToRep;
 
     public int getIdCourse() {
         return idCourse;
@@ -30,11 +29,4 @@ public class TaskDTO {
         this.description = description;
     }
 
-    public String getInfoToRep() {
-        return infoToRep;
-    }
-
-    public void setInfoToRep(String infoToRep) {
-        this.infoToRep = infoToRep;
-    }
 }

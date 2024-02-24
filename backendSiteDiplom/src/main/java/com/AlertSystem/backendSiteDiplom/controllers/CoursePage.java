@@ -3,7 +3,9 @@ package com.AlertSystem.backendSiteDiplom.controllers;
 
 import com.AlertSystem.backendSiteDiplom.dto.TaskDTO;
 import com.AlertSystem.backendSiteDiplom.models.People;
+import com.AlertSystem.backendSiteDiplom.models.PeopleInCourseId;
 import com.AlertSystem.backendSiteDiplom.models.Task;
+import com.AlertSystem.backendSiteDiplom.services.PeopleInCourseService;
 import com.AlertSystem.backendSiteDiplom.services.PeopleService;
 import com.AlertSystem.backendSiteDiplom.services.TaskService;
 import com.AlertSystem.backendSiteDiplom.util.JWTUtil;
@@ -21,11 +23,13 @@ public class CoursePage {
     private PeopleService peopleService;
 
     private TaskService taskService;
+    private PeopleInCourseService peopleInCourseService;
 
-    public CoursePage(JWTUtil jwtUtil, PeopleService peopleService, TaskService taskService) {
+    public CoursePage(JWTUtil jwtUtil, PeopleService peopleService, TaskService taskService, PeopleInCourseService peopleInCourseService) {
         this.jwtUtil = jwtUtil;
         this.peopleService = peopleService;
         this.taskService = taskService;
+        this.peopleInCourseService = peopleInCourseService;
     }
 
     @GetMapping("/tasks")
@@ -42,9 +46,23 @@ public class CoursePage {
         String login = jwtUtil.validateToken(jwtCookie);
         People people = peopleService.getByLogin(login);
 
-        Task task = new Task(taskDTO.getIdCourse(), taskDTO.getLabel(), taskDTO.getDescription());
+        Task task = new Task(taskDTO.getIdCourse(),
+                taskDTO.getLabel(),
+                taskDTO.getDescription());
         taskService.save(task);
 
         return ResponseEntity.ok(Map.of("status", "success"));
+    }
+
+    @GetMapping("/getInfoToRep/{id}")
+    public ResponseEntity<String> getInfoToRep(@CookieValue(value = "jwt-token") String jwtCookie,
+                                            @PathVariable Integer id) {
+        String login = jwtUtil.validateToken(jwtCookie);
+        People people = peopleService.getByLogin(login);
+        PeopleInCourseId peopleInCourseId = new PeopleInCourseId(id, people.getId());
+
+        String response = peopleInCourseService.findInfoToRep(peopleInCourseId);
+
+        return ResponseEntity.ok(response);
     }
 }

@@ -69,6 +69,7 @@ public class MainPage {
             PeopleInCourseId peopleInCourseId = new PeopleInCourseId(course.getId(), student.getId());
             PeopleInCourse peopleInCourse = new PeopleInCourse();
             peopleInCourse.setPeopleInCourseId(peopleInCourseId);
+            peopleInCourse.setInfoToRep("URL REPO");
             peopleInCourseService.savePeopleInCourse(peopleInCourse);
         }
 
