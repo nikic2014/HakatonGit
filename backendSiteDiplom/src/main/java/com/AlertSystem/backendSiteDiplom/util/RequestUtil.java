@@ -30,8 +30,8 @@ public class RequestUtil {
                 throw new IOException("Unexpected code " + response);
             }
 
-            System.out.println(response.body().string());
-            return response.body().string();
+            String responce = response.body().string();
+            return responce;
         }
     }
 

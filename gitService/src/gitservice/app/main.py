@@ -1,6 +1,8 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Request
 import requests
+import asyncio
 
 from src.gitservice.app.api.repository import create_repository
 # from src.gitservice.app.api.branch import get_branch_info, create_branch
@@ -29,9 +31,18 @@ async def root():
 
 
 @app.post("/create_repository")
-def app_create_repository(username: str, course_id: int, course_name: str, description: str):
+async def app_create_repository(request: Request):
     try:
-        return create_repository(username, course_id, course_name,  description)
+        data = await request.json()
+        username = data.get("username")
+        course_id = data.get("course_id")
+        course_name = data.get("course_name")
+        description = data.get("description")
+
+        if not all([username, course_id, course_name, description]):
+            raise HTTPException(status_code=400, detail="Missing required fields in JSON data")
+
+        return create_repository(username, course_id, course_name, description)
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 

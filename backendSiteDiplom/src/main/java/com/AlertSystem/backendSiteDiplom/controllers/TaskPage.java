@@ -28,9 +28,9 @@ public class TaskPage {
     }
 
     @GetMapping("/getGrade")
-    public ResponseEntity<Map> setInfoToRep(@CookieValue(value = "jwt-token") String jwtCookie,
+    public ResponseEntity<Map> getInfoToRep(@CookieValue(value = "jwt-token") String jwtCookie,
                                             @RequestParam(value = "taskId") int taskId,
-                                            @RequestParam(value = "taskId") int idPeople) {
+                                            @RequestParam(value = "idPeople") int idPeople) {
         String login = jwtUtil.validateToken(jwtCookie);
         People people = peopleService.getByLogin(login);
 
