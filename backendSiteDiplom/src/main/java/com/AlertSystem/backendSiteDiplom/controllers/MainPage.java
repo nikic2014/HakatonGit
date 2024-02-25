@@ -9,9 +9,11 @@ import com.AlertSystem.backendSiteDiplom.services.CourseService;
 import com.AlertSystem.backendSiteDiplom.services.PeopleInCourseService;
 import com.AlertSystem.backendSiteDiplom.services.PeopleService;
 import com.AlertSystem.backendSiteDiplom.util.JWTUtil;
+import com.AlertSystem.backendSiteDiplom.util.RequestUtil;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.List;
 
@@ -24,12 +26,14 @@ public class MainPage {
     private PeopleService peopleService;
     private CourseService courseService;
     private PeopleInCourseService peopleInCourseService;
+    private RequestUtil requestUtil;
 
-    public MainPage(JWTUtil jwtUtil, PeopleService peopleService, CourseService courseService, PeopleInCourseService peopleInCourseService) {
+    public MainPage(JWTUtil jwtUtil, PeopleService peopleService, CourseService courseService, PeopleInCourseService peopleInCourseService, RequestUtil requestUtil) {
         this.jwtUtil = jwtUtil;
         this.peopleService = peopleService;
         this.courseService = courseService;
         this.peopleInCourseService = peopleInCourseService;
+        this.requestUtil = requestUtil;
     }
 
     @GetMapping("/userInfo")
@@ -55,7 +59,7 @@ public class MainPage {
 
     @PostMapping("/createCourse")
     public ResponseEntity<Map> createCourse(@CookieValue(value = "jwt-token") String jwtCookie,
-                                            @RequestBody CourseDTO courseDTO) {
+                                            @RequestBody CourseDTO courseDTO) throws IOException {
         String login = jwtUtil.validateToken(jwtCookie);
         People people = peopleService.getByLogin(login);
 
@@ -69,7 +73,9 @@ public class MainPage {
             PeopleInCourseId peopleInCourseId = new PeopleInCourseId(course.getId(), student.getId());
             PeopleInCourse peopleInCourse = new PeopleInCourse();
             peopleInCourse.setPeopleInCourseId(peopleInCourseId);
-            peopleInCourse.setInfoToRep("URL REPO");
+            String infToRep = requestUtil.sendCreateRepo(student.getLogin(), course.getId(), course.getLabel(),
+                    course.getDescription());
+            peopleInCourse.setInfoToRep(infToRep);
             peopleInCourseService.savePeopleInCourse(peopleInCourse);
         }
 

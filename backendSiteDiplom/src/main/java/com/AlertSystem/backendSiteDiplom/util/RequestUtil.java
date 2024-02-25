@@ -1,35 +1,38 @@
 package com.AlertSystem.backendSiteDiplom.util;
 
 
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.*;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 @Component
 public class RequestUtil {
-    public String sendRequest(){
+    public static final MediaType JSON = MediaType.get("application/json; charset=utf-8");
+
+    public String sendCreateRepo(String username, int course_id, String course_name, String decription) throws IOException {
         OkHttpClient client = new OkHttpClient();
 
-        String url = "https://api.example.com/data";
+        // Замените значения username, course_id, course_name и description на соответствующие значения
+        String json = "{\"username\":\"" + username +
+                "\", \"course_id\":"+course_id +
+                ", \"course_name\":\""+course_name+"\", " +
+                "\"description\":\""+decription+"\"}";
 
+        RequestBody body = RequestBody.create(json, JSON);
         Request request = new Request.Builder()
-                .url(url)
+                .url("http://127.0.0.1:8000/create_repository")
+                .post(body)
                 .build();
 
-        try {
-            Response response = client.newCall(request).execute();
-            String responseData = response.body().string();
-            System.out.println(responseData);
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
 
-            return responseData;
-        } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println(response.body().string());
+            return response.body().string();
         }
-
-        return "We have truble";
     }
 
 }
