@@ -6,8 +6,8 @@ from src.gitservice.app.api.const import GITHUB_USERNAME, GITHUB_TOKEN, HEADERS
 def create_repository(username, course_id, course_name, description):
     create_repository_url = 'https://api.github.com/user/repos'
 
-    repository_name = f"course-{course_id}-{username}"
-    repo = Repo.init(repository_name)
+    repository_name = f"course_{course_id}_{username}"
+    repo = Repo.init(f"repositories/{repository_name}")
 
     headers = {
         'Authorization': f'token {GITHUB_TOKEN}',
@@ -15,7 +15,7 @@ def create_repository(username, course_id, course_name, description):
     }
     data = {
         'name': repository_name,
-        'description': f"{course_name}:\n{description}",
+        'description': f"{course_name}: {description}",
         'private': True,
         'auto_init': True
     }
@@ -27,7 +27,7 @@ def create_repository(username, course_id, course_name, description):
 
         return response.json()['html_url']
     elif response.status_code == 422:
-        raise Exception("Репозиторий уже существует.")
+        raise Exception(f"Репозиторий уже существует.")
     else:
         raise Exception(f"Ошибка при создании удаленного репозитория: {response.text}")
 
@@ -36,7 +36,7 @@ def add_collaborator(repository_name, username, permission="push"):
     add_collaborator_url = f"https://api.github.com/repos/{GITHUB_USERNAME}/{repository_name}/collaborators/{username}"
     headers = {
         "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github.v3+json"
+        "Accept": "application/json"
     }
     data = {
         "permission": permission

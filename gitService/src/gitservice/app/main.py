@@ -35,7 +35,23 @@ def app_create_repository(username: str, course_id: int, course_name: str, descr
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
-# response["html_url"]
+# -----------------------------------------------------TEST------------------------------------------------------------
+
+
+@app.get("/check_create_repository")
+def check_create_repository():
+    url = "http://127.0.0.1:8000/create_repository"
+    data = {
+        "username": "Razermel",
+        "course_id": 127,
+        "course_name": "Информационные технологии",
+        "description": "Курс такой-то препод такой-то..."
+    }
+
+    response = requests.post(url, params=data)
+    return response.json()
+
+
 
 # @app.get("/get_branch_info")
 # def app_get_branch_info(username: str, repository_name: str):
@@ -52,22 +68,6 @@ def app_create_repository(username: str, course_id: int, course_name: str, descr
 #     except Exception as e:
 #         raise HTTPException(status_code=500, detail=str(e))
 #
-
-# -----------------------------------------------------TEST------------------------------------------------------------
-@app.get("/check_create_repository")
-def check_create_repository():
-    url = "http://0.0.0.0:8000/create_repository"
-    data = {
-        "username": "Razermel",
-        "course_id": "123",
-        "course_name": "Информационные технологии",
-        "description": "Курс такой-то препод такой-то..."
-    }
-
-    response = requests.post(url, params=data)
-    return response.json()
-
-
 # @app.get("/check_get_branch_info")
 # def check_create_repository():
 #     url = "http://0.0.0.0:8000/get_branch_info"
