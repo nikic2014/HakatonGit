@@ -13,6 +13,27 @@ public class Grade {
     private int idTask;
     @Column(name = "idPeople")
     private int idPeople;
+    @Column(name = "dateGrade")
+    private String dateGrade;
+    @Column(name = "dateLastPush")
+    private String dateLastPush;
+
+    public String getDateGrade() {
+        return dateGrade;
+    }
+
+    public void setDateGrade(String dateGrade) {
+        this.dateGrade = dateGrade;
+    }
+
+    public String getDateLastPush() {
+        return dateLastPush;
+    }
+
+    public void setDateLastPush(String dateLastPush) {
+        this.dateLastPush = dateLastPush;
+    }
+
     @Column(name = "grade")
     private int grade;
 

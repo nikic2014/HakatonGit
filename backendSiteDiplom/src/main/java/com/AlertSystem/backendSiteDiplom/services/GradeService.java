@@ -31,6 +31,7 @@ public class GradeService {
         grade.setIdPeople(idPeople);
         grade.setIdTask(idTask);
         grade.setGrade(0);
+        grade.setDateGrade("");
         this.gradeRepository.save(grade);
         return grade;
     }

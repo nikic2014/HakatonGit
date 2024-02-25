@@ -6,6 +6,7 @@ import com.AlertSystem.backendSiteDiplom.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TaskService {
@@ -21,5 +22,9 @@ public class TaskService {
 
     public List<Task> getTasksByCourseId(int courseId){
         return taskRepository.findByIdCourse(courseId);
+    }
+
+    public Optional<Task> findByTaskId(int taskId){
+        return taskRepository.findById(taskId);
     }
 }

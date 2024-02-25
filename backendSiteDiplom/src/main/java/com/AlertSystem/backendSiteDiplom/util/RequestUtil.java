@@ -35,4 +35,27 @@ public class RequestUtil {
         }
     }
 
+    public String sendInfoToPush(String username, String infoToRep, String branchName) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        // Замените значения username, course_id, course_name и description на соответствующие значения
+        String json = "{\"username\":\"" + username +
+                "\", \"repository_url\":"+infoToRep +
+                ", \"branch_name\":\""+branchName+"\"}";
+
+        RequestBody body = RequestBody.create(json, JSON);
+        Request request = new Request.Builder()
+                .url("http://127.0.0.1:8000/get_branch_info")
+                .post(body)
+                .build();
+
+        try (Response response = client.newCall(request).execute()) {
+            if (!response.isSuccessful()) {
+                throw new IOException("Unexpected code " + response);
+            }
+
+            String responce = response.body().string();
+            return responce;
+        }
+    }
 }
