@@ -3,29 +3,26 @@ import { ref } from 'vue'
 import Course from './Course.vue'
 
 const courses = ref([
-  'Курс 1',
-  'Курс 2',
-  'Курс 3',
-  'Курс 4',
-  'Курс 5',
-  'Курс 6',
-  'Курс 7',
-  'Курс 8',
-  'Курс 9',
-  'Курс 10'
+  'Параллельное и распределенное программирование',
+  'Программирование на Scala',
+  'Языки программирования (осень 2023) ',
+  'Базы Машинно-зависимые языки программирования. Часть 1',
+  'Объектно-ориентированное программирование',
+  'Современные информационные технологии (весна 2022)',
+  'Практика по теории графов (311, 341, 351 группы)'
 ])
 
 const description = ref(
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.',
-  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a, sed pariatur ut cum dignissimos accusantium? Voluptatum, sequi.'
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.',
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt atque placeat harum, qui sapiente delectus voluptate quibusdam iure totam quaerat ad a.'
 )
 
 // const courses = ref([
@@ -65,6 +62,7 @@ function sortCourses() {
       @change="sortCourses"
       class="pl-2 mt-1 mb-10 rounded-xl w-36 h-8 outline-cyan-600"
     >
+      <option value="">Сортировать</option>
       <option value="А - Я">А - Я</option>
       <option value="Я - А">Я - А</option>
     </select>

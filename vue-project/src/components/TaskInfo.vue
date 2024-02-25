@@ -1,7 +1,9 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
 import Header from './Header.vue'
 import { showbutton } from './Main.vue'
+import CheckTask from './CheckTask.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -9,11 +11,25 @@ const route = useRoute()
 const title = route.query.title
 const titleTask = route.query.titleTask
 
+let saved = false
+let textAreaContent =
+  'Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores dolor, voluptates error ab voluptas repellendus totam ratione vitae delectus labore?'
+
 function back(title) {
   router.push({ path: '/courseinfo', query: { title: title } })
 }
 
 const randomScore = Math.floor(Math.random() * 101)
+
+function saveChanges() {
+  saved = true
+}
+
+var showAddCourse4 = ref(false)
+
+function toggleAddCourse4() {
+  showAddCourse4.value = !showAddCourse4.value
+}
 </script>
 
 <template>
@@ -36,6 +52,7 @@ const randomScore = Math.floor(Math.random() * 101)
         <h2 class="text-2xl mb-5 mr-5 ml-5 mt-5 font-medium text-cyan-900">Условие задания</h2>
         <textarea
           :readonly="!showbutton"
+          v-model="textAreaContent"
           class="outline-none ml-14 w-11/12 rounded-lg bg-gray-100"
           name=""
           id=""
@@ -60,11 +77,19 @@ const randomScore = Math.floor(Math.random() * 101)
 
       <div v-if="showbutton" class="flex justify-start">
         <button
+          @click="toggleAddCourse4"
           class="mt-10 ml-8 pb-1 px-4 items-center transition bg-cyan-700 w-38 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-amber-600 active:bg-cyan-800 cursor-pointer"
         >
-          Проверить задания
+          Проверить задание
+        </button>
+        <button
+          @click="saveChanges"
+          class="mt-10 ml-8 pb-1 px-4 items-center transition bg-cyan-700 w-38 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-amber-600 active:bg-cyan-800 cursor-pointer"
+        >
+          Сохранить изменения
         </button>
       </div>
     </body>
+    <CheckTask id="add" v-if="showAddCourse4" @close="toggleAddCourse4" />
   </div>
 </template>
