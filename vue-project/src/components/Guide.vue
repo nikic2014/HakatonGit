@@ -35,23 +35,9 @@ function closeAddCourse() {
       <form action="">
         <!-- описание -->
         <div class="mb-2 pl-3 pr-3 pt-2 pb-2 border-2 border-cyan-600 rounded-lg w-full">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint commodi architecto itaque
-          eos vitae in odit cupiditate consequuntur voluptas! Dolorum dicta eum inventore hic autem
-          praesentium error reprehenderit dignissimos, culpa ab itaque, enim voluptate placeat a
-          ipsum similique omnis cupiditate fuga incidunt eveniet laudantium architecto suscipit? At
-          dolor tempora rerum illo quasi obcaecati distinctio? Soluta aut unde iste esse, maiores
-          enim saepe ea illo, deleniti voluptates minus veritatis molestias commodi nobis sunt
-          officiis consectetur. Architecto exercitationem, quasi voluptate officiis consequuntur a
-          aliquid, facere atque doloremque porro odio enim doloribus eum iste expedita voluptatibus
-          quaerat. Quos, impedit ducimus accusamus earum odio vel tempore in soluta blanditiis omnis
-          libero, iste quas modi fuga nulla eveniet? Delectus quod, inventore necessitatibus, minus
-          saepe sequi aperiam itaque tempora quos nobis corrupti molestiae eligendi sunt dolor neque
-          quasi unde, vitae sed cum ducimus animi dolorum iusto. Perspiciatis ab optio tenetur
-          facilis placeat alias, error nemo pariatur, modi expedita id repellat consectetur odio?
-          Voluptates explicabo quam adipisci molestias nostrum distinctio neque sunt. Quis veniam
-          beatae eos sed. Rerum, veniam? Ratione odio perspiciatis soluta corrupti totam voluptates,
-          nulla est cum voluptatibus repellendus earum quia excepturi aspernatur ea minus fugit
-          repellat possimus veritatis ducimus sit labore veniam recusandae esse!
+          Для того чтобы начат работу над заданием примите приглашение на колоборацию к репозиторрию
+          курса Для того чтобы сдать финальную версию решения создайте ветку с названием
+          task_№Задания На сайте отобразится дата последнего коммита для этого задания
         </div>
       </form>
     </div>
