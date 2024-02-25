@@ -61,6 +61,18 @@ function back(title) {
           placeat possimus beatae quibusdam.
         </p>
       </div>
+
+      <div>
+        <h2 class="ml-5 mt-10 text-3xl font-medium mb-3 mr-2 text-cyan-900">
+          Вы отправили свое решение
+        </h2>
+      </div>
+      <div class="flex justify-start">
+        <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">Оценка:</h2>
+        <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">45</h2>
+        <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">/</h2>
+        <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">100</h2>
+      </div>
     </body>
   </div>
 </template>

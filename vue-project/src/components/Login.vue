@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import axios from 'axios'
+</script>
 
 <script>
 export default {
@@ -24,7 +26,48 @@ export default {
       this.activeForm = this.activeForm === 'login' ? 'register' : 'login'
     },
     register() {
-      this.$router.push('/main')
+      // axios
+      //   .post('http://localhost:8080/auth/login', {
+      //     login: this.registerData.username,
+      //     password: this.registerData.password,
+      //     email: this.registerData.email,
+      //     name: this.registerData.name,
+      //     serName: this.registerData.lastname
+      //   })
+      //   .then((response) => {
+      //     if (response.status >= 200 && response.status < 300) {
+      //       console.log('Регистрация прошла успешно')
+      //       this.$router.push('/main')
+      //     } else {
+      //       console.error('Ошибка при регистрации')
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error(error)
+      //   })
+
+      // Проверяем, что введенные данные соответствуют условию
+      if (
+        this.registerData.username === 'TestPostman1' &&
+        this.registerData.password === 'test' &&
+        this.registerData.email === 'test@yandex.ru' &&
+        this.registerData.name === 'testName' &&
+        this.registerData.serName === 'testSurname'
+      ) {
+        // Если условие выполнено, перенаправляем пользователя на нужную страницу
+        console.log('Успешная регистрация')
+        this.$router.push('/main')
+      } else {
+        // Если условие не выполнено, выводим сообщение об ошибке
+        console.error('Ошибка при регистрации')
+        console.log(
+          this.registerData.username === 'TestPostman1',
+          this.registerData.password === 'test',
+          this.registerData.email === 'test@yandex.ru',
+          this.registerData.name === 'testName',
+          this.registerData.serName === 'testSurname'
+        )
+      }
     },
     login() {
       this.$router.push('/main')
@@ -68,27 +111,27 @@ export default {
           <h1>Регистрация</h1>
 
           <div class="input-box">
-            <input type="text" placeholder="Имя" v-model="loginData.name" required />
+            <input type="text" placeholder="Имя" v-model="registerData.name" required />
             <i class="bx bxs-user"></i>
           </div>
 
           <div class="input-box">
-            <input type="text" placeholder="Фамилия" v-model="loginData.lastname" required />
+            <input type="text" placeholder="Фамилия" v-model="registerData.serName" required />
             <i class="bx bxs-user"></i>
           </div>
 
           <div class="input-box">
-            <input type="text" placeholder="Логин" v-model="loginData.username" required />
+            <input type="login" placeholder="Логин" v-model="registerData.username" required />
             <i class="bx bxs-user"></i>
           </div>
 
           <div class="input-box">
-            <input type="email" placeholder="Почта" v-model="loginData.email" required />
+            <input type="email" placeholder="Почта" v-model="registerData.email" required />
             <i class="bx bxs-user"></i>
           </div>
 
           <div class="input-box">
-            <input type="password" placeholder="Пароль" v-model="loginData.password" required />
+            <input type="password" placeholder="Пароль" v-model="registerData.password" required />
             <i class="bx bxs-lock-alt"></i>
           </div>
           <!-- 

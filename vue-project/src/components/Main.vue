@@ -11,20 +11,39 @@ function toggleAddCourse() {
 }
 </script>
 
+<script>
+export const showbutton = ref(false)
+
+export function togglebutton() {
+  showbutton.value = !showbutton.value
+}
+</script>
+
 <template>
   <div class="">
     <Header />
 
     <body class="">
       <div class="p-10 border-t-2 border-b-2 border-gray-200 drop-shadow-md">
+        <!-- шапка шапки -->
         <div class="flex justify-between">
           <h2 class="text-3xl font-bold mb-8 text-cyan-900">Все курсы</h2>
-          <button
-            @click="toggleAddCourse"
-            class="pb-1 px-4 items-center transition bg-cyan-700 w-32 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-amber-600 active:bg-cyan-800 cursor-pointer"
-          >
-            Создать курс
-          </button>
+
+          <div>
+            <!-- <select class="mr-32 rounded-xl w-36 h-8" name="sort" id="">
+              <option value=""></option>
+              <option value=""></option>
+              <option value=""></option>
+            </select> -->
+
+            <button
+              v-if="showbutton"
+              @click="toggleAddCourse"
+              class="pb-1 px-4 items-center transition bg-cyan-700 w-32 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-amber-600 active:bg-cyan-800 cursor-pointer"
+            >
+              Создать курс
+            </button>
+          </div>
         </div>
 
         <CourseList />
