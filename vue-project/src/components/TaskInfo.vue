@@ -46,16 +46,24 @@ const randomScore = Math.floor(Math.random() * 101)
         </textarea>
       </div>
 
-      <div>
+      <div v-if="!showbutton">
         <h2 class="ml-5 mt-10 text-3xl font-medium mb-3 mr-2 text-cyan-900">
           Вы отправили свое решение
         </h2>
       </div>
-      <div class="flex justify-start">
+      <div v-if="!showbutton" class="flex justify-start">
         <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">Оценка:</h2>
         <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">{{ randomScore }}</h2>
         <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">/</h2>
         <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">100</h2>
+      </div>
+
+      <div v-if="showbutton" class="flex justify-start">
+        <button
+          class="mt-10 ml-8 pb-1 px-4 items-center transition bg-cyan-700 w-38 h-8 rounded-xl text-white disabled:bg-slate-300 hover:bg-amber-600 active:bg-cyan-800 cursor-pointer"
+        >
+          Проверить задания
+        </button>
       </div>
     </body>
   </div>
