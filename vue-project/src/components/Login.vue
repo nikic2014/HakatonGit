@@ -23,7 +23,9 @@ export default {
     toggleForm() {
       this.activeForm = this.activeForm === 'login' ? 'register' : 'login'
     },
-    register() {},
+    register() {
+      this.$router.push('/main')
+    },
     login() {
       this.$router.push('/main')
     }
@@ -33,71 +35,74 @@ export default {
 
 <template>
   <body>
-    <div class="wrapper" v-auto-animate>
-      <form id="login-form" v-if="activeForm === 'login'" @submit.prevent="login">
-        <h1>Вход</h1>
-        <div class="input-box">
-          <input type="text" placeholder="Логин" v-model="loginData.username" required />
-          <i class="bx bxs-user"></i>
-        </div>
+    <div class="wrapper">
+      <transition name="form" mode="out-in">
+        <form key="login-form" v-if="activeForm === 'login'" @submit.prevent="login">
+          <h1>Вход</h1>
+          <div class="input-box">
+            <input type="text" placeholder="Логин" v-model="loginData.username" required />
+            <i class="bx bxs-user"></i>
+          </div>
 
-        <div class="input-box">
-          <input type="password" placeholder="Пароль" v-model="loginData.password" required />
-          <i class="bx bxs-lock-alt"></i>
-        </div>
+          <div class="input-box">
+            <input type="password" placeholder="Пароль" v-model="loginData.password" required />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <!-- 
+          <div class="remember-forgot">
+            <label><input type="checkbox" v-model="rememberMe" />Запомнить меня</label>
+            <a href="#">Забыли пароль?</a>
+          </div> -->
 
-        <div class="remember-forgot">
-          <label><input type="checkbox" v-model="rememberMe" />Запомнить меня</label>
-          <a href="#">Забыли пароль?</a>
-        </div>
+          <button type="submit" class="btn">Войти</button>
 
-        <button type="submit" class="btn">Войти</button>
+          <div class="register-link">
+            <p>
+              Нет аккаунта?
+              <a href="javascript:void(0);" @click="toggleForm">Зарегистрироваться</a>
+            </p>
+          </div>
+        </form>
 
-        <div class="register-link">
-          <p>
-            Нет аккаунта? <a href="javascript:void(0);" @click="toggleForm">Зарегистрироваться</a>
-          </p>
-        </div>
-      </form>
+        <form key="register-form" v-else @submit.prevent="register">
+          <h1>Регистрация</h1>
 
-      <form id="register-form" v-else @submit.prevent="register">
-        <h1>Регистрация</h1>
+          <div class="input-box">
+            <input type="text" placeholder="Имя" v-model="loginData.name" required />
+            <i class="bx bxs-user"></i>
+          </div>
 
-        <div class="input-box">
-          <input type="text" placeholder="Имя" v-model="loginData.name" required />
-          <i class="bx bxs-user"></i>
-        </div>
+          <div class="input-box">
+            <input type="text" placeholder="Фамилия" v-model="loginData.lastname" required />
+            <i class="bx bxs-user"></i>
+          </div>
 
-        <div class="input-box">
-          <input type="text" placeholder="Фамилия" v-model="loginData.lastname" required />
-          <i class="bx bxs-user"></i>
-        </div>
+          <div class="input-box">
+            <input type="text" placeholder="Логин" v-model="loginData.username" required />
+            <i class="bx bxs-user"></i>
+          </div>
 
-        <div class="input-box">
-          <input type="text" placeholder="Логин" v-model="loginData.username" required />
-          <i class="bx bxs-user"></i>
-        </div>
+          <div class="input-box">
+            <input type="email" placeholder="Почта" v-model="loginData.email" required />
+            <i class="bx bxs-user"></i>
+          </div>
 
-        <div class="input-box">
-          <input type="text" placeholder="Почта" v-model="loginData.email" required />
-          <i class="bx bxs-user"></i>
-        </div>
+          <div class="input-box">
+            <input type="password" placeholder="Пароль" v-model="loginData.password" required />
+            <i class="bx bxs-lock-alt"></i>
+          </div>
+          <!-- 
+          <div class="remember-forgot">
+            <label><input type="checkbox" v-model="rememberMe" />Запомнить меня</label>
+          </div> -->
 
-        <div class="input-box">
-          <input type="password" placeholder="Пароль" v-model="loginData.password" required />
-          <i class="bx bxs-lock-alt"></i>
-        </div>
+          <button type="submit" class="btn">Зарегестрироваться</button>
 
-        <div class="remember-forgot">
-          <label><input type="checkbox" v-model="rememberMe" />Запомнить меня</label>
-        </div>
-
-        <button type="submit" class="btn">Зарегестрироваться</button>
-
-        <div class="register-link">
-          <p>Есть аккаунт? <a href="javascript:void(0);" @click="toggleForm">Войти</a></p>
-        </div>
-      </form>
+          <div class="register-link">
+            <p>Есть аккаунт? <a href="javascript:void(0);" @click="toggleForm">Войти</a></p>
+          </div>
+        </form>
+      </transition>
     </div>
   </body>
 </template>
@@ -113,7 +118,7 @@ export default {
 }
 
 body {
-  background-color: #134e4a;
+  background-color: #2a4472;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,7 +129,15 @@ body {
 }
 
 .wrapper {
-  width: 420px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+form {
+  width: 100%;
+  max-width: 600px;
   background: transparent;
   border: 3px solid rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(20px);
@@ -132,6 +145,21 @@ body {
   color: white;
   border-radius: 10px;
   padding: 30px 40px;
+}
+
+.form-enter-active,
+.form-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.form-enter,
+.form-leave-to {
+  opacity: 0;
+}
+
+.form-enter-to,
+.form-leave {
+  opacity: 1;
 }
 
 .wrapper h1 {
@@ -147,7 +175,7 @@ body {
 }
 
 .input-box input {
-  width: 100%;
+  width: 300px;
   height: 100%;
   background: transparent;
   border: none;
@@ -156,11 +184,15 @@ body {
   border-radius: 40px;
   font-size: 16px;
   color: white;
-  padding: 20px 45px 20px 20px;
+  padding: 20px 20px 20px 20px;
+}
+
+.input-box input:focus {
+  border-color: #c4c4c4;
 }
 
 .input-box input::placeholder {
-  color: rgb(208, 208, 208);
+  color: rgb(186, 186, 186);
 }
 
 .input-box i {
@@ -223,9 +255,16 @@ body {
 }
 
 .btn:hover {
-  background-color: rgb(19 78 74);
+  background-color: #2a2a72;
   color: #fff;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #c4c4c4;
+  /* transform: translateY(-1px); */
+  transition: 0.3s;
+}
+
+.btn:active {
+  background-color: #1e1e54;
+  color: #fff;
   /* transform: translateY(-1px); */
   transition: 0.3s;
 }

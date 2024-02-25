@@ -7,8 +7,19 @@ import TaskInfo from './components/TaskInfo.vue'
 const routes = [
   { path: '/', component: Login },
   { path: '/main', component: Main },
-  { path: '/courseinfo', component: CourseInfo },
-  { path: '/taskinfo', component: TaskInfo }
+  {
+    path: '/courseinfo',
+    component: CourseInfo,
+    props: (route) => ({ title: route.query.title })
+  },
+  {
+    path: '/taskinfo',
+    component: TaskInfo,
+    props: (route) => ({
+      title: route.query.title,
+      titleTask: route.query.titleTask
+    })
+  }
 ]
 
 const router = createRouter({
