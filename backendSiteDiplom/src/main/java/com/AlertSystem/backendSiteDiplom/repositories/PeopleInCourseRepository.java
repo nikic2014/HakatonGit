@@ -12,4 +12,6 @@ public interface PeopleInCourseRepository extends JpaRepository<PeopleInCourse, 
 
     List<PeopleInCourse> findByPeopleInCourseIdIdPeople(int idPeople);
     List<PeopleInCourse> findByPeopleInCourseIdIdCourse(int idCourse);
+
+    PeopleInCourse findByPeopleInCourseId(PeopleInCourseId peopleInCourseId);
 }

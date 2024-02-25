@@ -39,4 +39,8 @@ public class PeopleInCourseService {
             throw new NullPointerException("Человек не состоит в данном " +
                     "проекте");
     }
+
+    public String findInfoToRep(PeopleInCourseId peopleInCourseId){
+        return peopleInPCourseRepository.findByPeopleInCourseId(peopleInCourseId).getInfoToRep();
+    }
 }

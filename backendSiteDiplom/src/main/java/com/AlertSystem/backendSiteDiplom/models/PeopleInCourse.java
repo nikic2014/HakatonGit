@@ -1,5 +1,6 @@
 package com.AlertSystem.backendSiteDiplom.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -11,10 +12,21 @@ public class PeopleInCourse {
     @EmbeddedId
     PeopleInCourseId peopleInCourseId;
 
+    @Column(name = "infoToRep")
+    private String infoToRep;
+
     public PeopleInCourse(){}
 
-    public PeopleInCourseId getPeopleInProjectId() {
+    public PeopleInCourseId getPeopleInCourseId() {
         return peopleInCourseId;
+    }
+
+    public String getInfoToRep() {
+        return infoToRep;
+    }
+
+    public void setInfoToRep(String infoToRep) {
+        this.infoToRep = infoToRep;
     }
 
     public void setPeopleInCourseId(PeopleInCourseId peopleInCourseId) {
