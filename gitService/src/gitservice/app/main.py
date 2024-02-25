@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 import requests
 
 from src.gitservice.app.api.repository import create_repository
@@ -7,6 +8,19 @@ from src.gitservice.app.api.repository import create_repository
 
 
 app = FastAPI()
+
+back_addr = f"http://localhost:8080/"
+origins = [
+    back_addr,
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
