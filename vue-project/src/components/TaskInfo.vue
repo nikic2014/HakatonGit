@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
 import Header from './Header.vue'
+import { showbutton } from './Main.vue'
 
 const router = useRouter()
 const route = useRoute()
@@ -11,6 +12,8 @@ const titleTask = route.query.titleTask
 function back(title) {
   router.push({ path: '/courseinfo', query: { title: title } })
 }
+
+const randomScore = Math.floor(Math.random() * 101)
 </script>
 
 <template>
@@ -31,35 +34,16 @@ function back(title) {
 
       <div class="border-2 border-cyan-800 bg-gray-100 rounded-lg h-auto">
         <h2 class="text-2xl mb-5 mr-5 ml-5 mt-5 font-medium text-cyan-900">Условие задания</h2>
-        <p class="mb-3 mr-5 ml-5">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sapiente repudiandae ullam,
-          corporis dolore autem, accusantium facere, quisquam magnam doloribus ex velit repellat!
-          Aperiam id voluptatum magni sunt molestias delectus labore! Dignissimos eligendi est quas
-          libero facilis reiciendis? Error unde optio, sit ducimus corrupti quis fugiat ratione
-          excepturi quaerat neque ut nobis aspernatur, necessitatibus quos quibusdam eum aperiam
-          obcaecati tenetur maxime, accusantium fugit quod aliquid delectus. Atque, reprehenderit
-          odio? Consequuntur explicabo asperiores beatae assumenda placeat ducimus exercitationem
-          animi itaque porro a minima voluptate dolor vel rem voluptates, ipsa aliquid veritatis
-          commodi cum accusantium totam. Illo dolor sint pariatur cumque! Dolores, facilis? Sunt
-          earum eaque obcaecati vitae vel ratione minima, odio, error tenetur voluptate
-          exercitationem. Perferendis tenetur esse sed, ea enim, exercitationem voluptates fuga
-          cupiditate deleniti distinctio vitae aliquam quasi quisquam ut nihil hic dolor quas
-          nostrum libero sapiente nisi similique. Unde suscipit ut doloribus, repellendus non totam
-          expedita officia dolorum dolorem fugiat hic, quia vitae deleniti architecto consectetur
-          provident tempora amet! Quaerat itaque corrupti consequuntur impedit, fuga necessitatibus,
-          inventore dicta veritatis fugiat doloribus, sint adipisci temporibus nisi eligendi error?
-          Nulla quibusdam aliquid perspiciatis deleniti omnis placeat dolorum qui illo eius quaerat
-          error, animi, odit accusamus voluptatum! Iure, accusamus doloremque. Ducimus sint nam
-          cupiditate magnam eos ea itaque, aspernatur quo tempore provident totam ipsa dolore
-          eveniet ipsam consequatur qui facere magni fugiat aperiam laborum non id vel minima. Id
-          itaque a cum quis possimus alias distinctio repellat earum fugiat tempore soluta sapiente
-          doloribus reprehenderit, totam magnam laudantium blanditiis maiores inventore non, beatae
-          ullam quibusdam minus! Soluta minima molestiae eum. Provident iusto, est culpa sapiente
-          iure beatae corporis tempore accusamus, velit ratione eius dolore repellendus rerum atque,
-          qui molestiae suscipit esse. Officiis amet molestiae qui, dolor incidunt blanditiis dolore
-          consequuntur deserunt sunt doloremque saepe assumenda dolores dolorem similique dolorum
-          placeat possimus beatae quibusdam.
-        </p>
+        <textarea
+          :readonly="!showbutton"
+          class="outline-none ml-14 w-11/12 rounded-lg bg-gray-100"
+          name=""
+          id=""
+          cols="30"
+          rows="10"
+        >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia, culpa sapiente ut porro vel laboriosam facere harum laborum cum dignissimos voluptatum consequuntur maxime magni doloremque vero cupiditate omnis soluta aspernatur repellat quam temporibus vitae ea provident atque. Odio ipsa deleniti ab corporis tempora veniam numquam, omnis itaque eveniet minus blanditiis natus. Delectus tempora libero deleniti officia, at minima quo distinctio eius saepe nihil veniam hic tenetur fugiat sunt reiciendis debitis nobis magni aut, laudantium repellat praesentium, ab doloribus consequatur. Sed doloremque, qui asperiores at nam vel odit corporis recusandae. Vero at reiciendis sapiente vitae. Cupiditate recusandae possimus quaerat sint. Rerum consequuntur explicabo enim ab beatae repellendus error ducimus voluptas, qui molestiae dolorum distinctio excepturi odit voluptates placeat ratione, repudiandae cupiditate obcaecati aliquam atque eaque aperiam veniam saepe! Deserunt doloremque officiis perferendis eum voluptates! A repudiandae perspiciatis, nobis veniam eligendi velit sed asperiores qui molestias magnam, nemo ipsum soluta minima nesciunt obcaecati repellendus, pariatur beatae odit officia voluptates ratione rem autem rerum neque? Eveniet quisquam similique nihil cupiditate distinctio voluptatem sequi minima corrupti veniam iste. Quis temporibus sapiente quibusdam quae assumenda! Amet ducimus hic, temporibus veniam culpa sapiente id dolore rerum vero, ipsum porro, ea expedita cum odit illum? Facere, repudiandae?
+        </textarea>
       </div>
 
       <div>
@@ -69,7 +53,7 @@ function back(title) {
       </div>
       <div class="flex justify-start">
         <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">Оценка:</h2>
-        <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">45</h2>
+        <h2 class="ml-5 mt-2 text-3xl font-bold mb-8 mr-2 text-cyan-900">{{ randomScore }}</h2>
         <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">/</h2>
         <h2 class="ml-1 mt-2 text-3xl font-bold mb-8 mr-1 text-cyan-900">100</h2>
       </div>

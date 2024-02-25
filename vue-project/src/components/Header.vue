@@ -20,11 +20,7 @@ function logout() {
 }
 
 function changerole() {
-  if (this.role === 'Студент') {
-    this.role = 'Преподаватель'
-  } else {
-    this.role = 'Студент'
-  }
+  role.value = role.value === 'Студент' ? 'Преподаватель' : 'Студент'
 }
 </script>
 

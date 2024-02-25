@@ -8,7 +8,8 @@ function open(title) {
 }
 
 defineProps({
-  title: String
+  title: String,
+  description: String
 })
 </script>
 
@@ -19,9 +20,7 @@ defineProps({
     <div class="flex justify-between mt-5 text-white">
       <div class="flex flex-col">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam consequuntur, unde soluta
-          deserunt vel officiis quasi, a ipsum veritatis nemo at enim incidunt amet laborum eos
-          quibusdam nobis alias voluptatibus?
+          {{ description }}
         </p>
       </div>
     </div>
